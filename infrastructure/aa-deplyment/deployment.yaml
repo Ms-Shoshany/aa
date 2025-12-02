@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aa
+  labels:
+    app: aa
+    service: aa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aa
+      service: aa
+  template:
+    metadata:
+      labels:
+        app: aa
+        service: aa
+    spec:
+      volumes:
+      - name: aa-volume
+        persistentVolumeClaim:
+          claimName: aa
+      containers:
+      - name: aa-container
+        image: hhana982/aa:1.<version>
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - mountPath: "/"
+          name: aa-volume
+        env: 
